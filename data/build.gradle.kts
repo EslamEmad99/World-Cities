@@ -34,13 +34,20 @@ android {
     }
 }
 
+tasks.withType<Test> {
+    jvmArgs("-XX:+EnableDynamicAgentLoading")
+}
+
 dependencies {
     implementation(project(":domain"))
+
+    // for test result logging
+    implementation(libs.slf4j.slf4j.nop)
+    testImplementation(libs.slf4j.slf4j.nop)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
@@ -50,6 +57,16 @@ dependencies {
     // Hilt for dependency injection
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    // testing
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.junit)
+    implementation(libs.kotlin.stdlib)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockk)
 }
 
 kapt {

@@ -10,11 +10,15 @@ java {
 
 kotlin {
     compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
     }
 }
 
-dependencies{
+dependencies {
     // dagger 2 for dependency injection
     implementation(libs.dagger)
+
+    // for test result logging
+    implementation(libs.slf4j.slf4j.nop)
+    testImplementation(libs.slf4j.slf4j.nop)
 }
