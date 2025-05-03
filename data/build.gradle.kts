@@ -50,7 +50,6 @@ dependencies {
     // Hilt for dependency injection
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-
 }
 
 kapt {
